@@ -1,0 +1,15 @@
+{
+  "name": "guacamole-common-js",
+  "version": "1.5.5",
+  "description": "guacamole-common-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/dushixiang/guacamole-common-js"
+  },
+  "author": "dushixiang",
+  "license": "ISC"
+}
