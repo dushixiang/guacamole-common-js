@@ -1,15 +1,51 @@
 {
-  "name": "guacamole-common-js",
-  "version": "1.5.5",
-  "description": "guacamole-common-js",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "github.com/dushixiang/guacamole-common-js"
-  },
-  "author": "dushixiang",
-  "license": "ISC"
+    "name": "@dushixiang/guacamole-common-js",
+    "version": "1.5.5",
+    "description": "guacamole-common-js",
+    "type": "module",
+    "main": "dist/cjs/guacamole-common.js",
+    "module": "dist/esm/guacamole-common.js",
+    "exports": {
+        ".": {
+            "import": "./dist/esm/guacamole-common.js",
+            "require": "./dist/cjs/guacamole-common.js"
+        }
+    },
+    "scripts": {
+        "build": "npm run build:esm && npm run build:cjs",
+        "build:esm:concat": "cat guacamole-client/guacamole-common-js/src/main/webapp/modules/*.js > dist/esm/guacamole-common.js",
+        "build:esm:append": "echo 'export default Guacamole;' >> dist/esm/guacamole-common.js",
+        "build:esm:terser": "terser dist/esm/guacamole-common.js > dist/esm/guacamole-common.min.js",
+        "build:esm": "npm run build:esm:concat && npm run build:esm:append && npm run build:esm:minify",
+        "build:cjs:concat": "cat guacamole-client/guacamole-common-js/src/main/webapp/modules/*.js > dist/cjs/guacamole-common.js",
+        "build:cjs:append": "echo 'module.exports = Guacamole;' >> dist/cjs/guacamole-common.js",
+        "build:cjs:terser": "terser dist/cjs/guacamole-common.js > dist/cjs/guacamole-common.min.js",
+        "build:cjs": "npm run build:cjs:concat && npm run build:cjs:append && npm run build:cjs:minify"
+    },
+    "repository": {
+        "type": "git",
+        "url": "github.com/dushixiang/guacamole-common-js"
+    },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "keywords": [
+        "guacamole",
+        "common",
+        "js",
+        "guac",
+        "remote",
+        "desktop",
+        "vnc",
+        "rdp",
+        "ssh",
+        "telnet"
+    ],
+    "author": "dushixiang",
+    "license": "Apache 2.0",
+    "homepage": "https://github.com/dushixiang/guacamole-common-js",
+    "devDependencies": {
+        "terser": "^5.30.3"
+    }
 }
